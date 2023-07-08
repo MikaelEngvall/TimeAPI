@@ -2,6 +2,7 @@ package se.lexicon;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -49,5 +50,13 @@ public class TimeApiExercises {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         String dayOfWeekSwedish = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.forLanguageTag("sv"));
         System.out.println("Exercise 5: Day of week for 1945-05-08: " + dayOfWeekSwedish);
+
+        //Exercise 6: Create a LocalDate of current date plus 10 years and minus 10 months.
+        //From that date extract the month and print it out.
+        LocalDate futureDate = today.plusYears(10).minusMonths(10);
+        // Extract the month from the LocalDate object
+        Month month = futureDate.getMonth();
+        String monthSwedish = month.getDisplayName(TextStyle.FULL, Locale.forLanguageTag("sv"));
+        System.out.println("Exercise 6: Month: " + monthSwedish); // Again in swedish, hence in lower cases
     }
 }
