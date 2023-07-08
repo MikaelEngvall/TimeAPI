@@ -16,7 +16,8 @@ public class TimeApiExercises {
         // "Torsdag 29 mars" using DateTimeFormatter
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE d MMMM",
-                Locale.forLanguageTag("sv")); // In swedish it uses lower cases. How can I capitalize the first letter?
+                Locale.forLanguageTag("sv")); // In swedish it uses lower cases.
+        // How can I capitalize the first letter? See the capitalizeFirstLetter methode included at the end.
         String formattedDate = capitalizeFirstLetter(today.format(formatter));
         System.out.println("Exercise 01: " + formattedDate);
 
