@@ -1,8 +1,6 @@
 package se.lexicon;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -58,5 +56,47 @@ public class TimeApiExercises {
         Month month = futureDate.getMonth();
         String monthSwedish = month.getDisplayName(TextStyle.FULL, Locale.forLanguageTag("sv"));
         System.out.println("Exercise 6: Month: " + monthSwedish); // Again in swedish, hence in lower cases
+
+        //Exercise 7: Using the LocalDate from exercise 6and your birthdate, create a Period between
+        //your birthdate and the date from exercise 5.Print out the elapsed years, months and days.
+        LocalDate birthdate = LocalDate.of(1968, Month.JULY, 21);
+        Period period = Period.between(date45, birthdate);
+
+        int years = period.getYears();
+        int months = period.getMonths();
+        int days = period.getDays();
+
+        // Get the display names of months in [language]
+        String birthdateMonth = birthdate.getMonth().getDisplayName(TextStyle.FULL, Locale.forLanguageTag("en"));
+        String date45Month = date45.getMonth().getDisplayName(TextStyle.FULL, Locale.forLanguageTag("en"));
+
+        System.out.print("Exercise 7: The period between my birthdate: " + birthdate.getDayOfMonth() + " "
+                + birthdateMonth + " " + birthdate.getYear() + " and 8 " + date45Month + " 1945 is ");
+        System.out.println(years + " years, " + months + " months and " + days + " days.");
+
+        //Exercise 8: Create a period of 4 years, 7 months and 29 days. Then create a LocalDate of current date
+        // and add the period you createdto the current date.
+        Period periodEx8 = Period.of(4, 7, 29);
+
+        // Add the period to the current date
+        LocalDate futureDateEx8 = today.plus(periodEx8);
+
+        System.out.println("Exercise 8: Current Date: " + today + " Future Date: " + futureDateEx8);
+
+        //Exercise 9: Create a LocalTime object of the current time.
+        LocalTime now = LocalTime.now();
+
+        System.out.println("Exercise 9: Current Time: " + now);
+
+        //Exercise 10:
+
+        //Exercise 11:
+
+        //Exercise 12:
+
+        //Exercise 13:
+
+        //Exercise 14:
+
     }
 }
