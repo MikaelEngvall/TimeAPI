@@ -2,8 +2,9 @@ package se.lexicon;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.Locale;
+
+import static java.time.format.TextStyle.FULL;
 
 /* Exercises from Lexicon. 1-14
  * Using the JavaTime API
@@ -15,14 +16,14 @@ public class TimeApiExercises {
         // "Torsdag 29 mars" using DateTimeFormatter
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE d MMMM",
-                Locale.forLanguageTag("sv")); // In swedish it uses lower cases
-        String formattedDate = today.format(formatter);
+                Locale.forLanguageTag("sv")); // In swedish it uses lower cases. How can I capitalize the first letter?
+        String formattedDate = capitalizeFirstLetter(today.format(formatter));
         System.out.println("Exercise 01: " + formattedDate);
 
         // Exercise 2: Create a LocalDate of a specific date and print it out in the pattern
         // "Torsdag 29 mars" using DateTimeFormatter
         LocalDate specificDate = LocalDate.of(2023, 3, 29);
-        String formattedSpecificDate = specificDate.format(formatter);
+        String formattedSpecificDate = capitalizeFirstLetter(specificDate.format(formatter));
         System.out.println("Exercise 02: " + formattedSpecificDate);
 
         // Exercise 3: Create a LocalDate of the last Monday and print out the entire week
@@ -46,7 +47,7 @@ public class TimeApiExercises {
         //I made it in swedish
         LocalDate date45 = LocalDate.of(1945, 5, 8);
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        String dayOfWeekSwedish = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.forLanguageTag("sv"));
+        String dayOfWeekSwedish = dayOfWeek.getDisplayName(FULL, Locale.forLanguageTag("sv"));
         System.out.println("Exercise 05: Day of week for 1945-05-08: " + dayOfWeekSwedish);
 
         //Exercise 6: Create a LocalDate of current date plus 10 years and minus 10 months.
@@ -54,7 +55,7 @@ public class TimeApiExercises {
         LocalDate futureDate = today.plusYears(10).minusMonths(10);
         // Extract the month from the LocalDate object
         Month month = futureDate.getMonth();
-        String monthSwedish = month.getDisplayName(TextStyle.FULL, Locale.forLanguageTag("sv"));
+        String monthSwedish = capitalizeFirstLetter(month.getDisplayName(FULL, Locale.forLanguageTag("sv")));
         System.out.println("Exercise 06: Month: " + monthSwedish); // Again in swedish, hence in lower cases
 
         //Exercise 7: Using the LocalDate from exercise 6and your birthdate, create a Period between
@@ -67,8 +68,8 @@ public class TimeApiExercises {
         int days = period.getDays();
 
         // Get the display names of months in [language]
-        String birthdateMonth = birthdate.getMonth().getDisplayName(TextStyle.FULL, Locale.forLanguageTag("en"));
-        String date45Month = date45.getMonth().getDisplayName(TextStyle.FULL, Locale.forLanguageTag("en"));
+        String birthdateMonth = birthdate.getMonth().getDisplayName(FULL, Locale.forLanguageTag("en"));
+        String date45Month = date45.getMonth().getDisplayName(FULL, Locale.forLanguageTag("en"));
 
         System.out.print("Exercise 07: The period between my birthdate: " + birthdate.getDayOfMonth() + " "
                 + birthdateMonth + " " + birthdate.getYear() + " and 8 " + date45Month + " 1945 is ");
@@ -124,9 +125,16 @@ public class TimeApiExercises {
         // 11 (I think you meant 13 here) to a String that should look tile this: torsdag 5 april 10:00
         DateTimeFormatter formatterEx14 = DateTimeFormatter.ofPattern("EEEE d MMMM HH:mm",
                 Locale.forLanguageTag("sv")); // In Swedish, lowercase for month and weekday
-        String formattedDateTime = dateTime.format(formatterEx14);
+        String formattedDateTime = capitalizeFirstLetter(dateTime.format(formatterEx14));
 
         System.out.println("Exercise 14: Formatted LocalDateTime: " + formattedDateTime);
 
+    }
+
+    private static String capitalizeFirstLetter(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }
