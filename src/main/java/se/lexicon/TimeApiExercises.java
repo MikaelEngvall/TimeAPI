@@ -47,7 +47,7 @@ public class TimeApiExercises {
         //I made it in swedish
         LocalDate date45 = LocalDate.of(1945, 5, 8);
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        String dayOfWeekSwedish = dayOfWeek.getDisplayName(FULL, Locale.forLanguageTag("sv"));
+        String dayOfWeekSwedish = capitalizeFirstLetter(dayOfWeek.getDisplayName(FULL, Locale.forLanguageTag("sv")));
         System.out.println("Exercise 05: Day of week for 1945-05-08: " + dayOfWeekSwedish);
 
         //Exercise 6: Create a LocalDate of current date plus 10 years and minus 10 months.
