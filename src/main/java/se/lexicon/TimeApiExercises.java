@@ -141,17 +141,17 @@ public class TimeApiExercises {
         // Combine the LocalDate and LocalTime to create a LocalDateTime object
         LocalDateTime dateTimeEx15 = dateEx15.atTime(timeEx15);
 
-        System.out.println("Exercise 15: Combined LocalDateTime: " + dateTime);
+        System.out.println("Exercise 15: Combined LocalDateTime: " + dateTimeEx15);
 
         //Exercise 16:
         // Create a LocalDateTime object
         LocalDateTime dateTimeEx16 = LocalDateTime.of(2023, 7, 8, 12, 34, 56);
         // Extract the LocalDate component from the LocalDateTime
-        LocalDate dateEx16 = dateTime.toLocalDate();
+        LocalDate dateEx16 = dateTimeEx16.toLocalDate();
         // Extract the LocalTime component from the LocalDateTime
-        LocalTime timeEx16 = dateTime.toLocalTime();
+        LocalTime timeEx16 = dateTimeEx16.toLocalTime();
 
-        System.out.println("Exercise 16: Date component: " + date + " Time component: " + time);
+        System.out.println("Exercise 16: Date component: " + dateEx16 + " Time component: " + timeEx16);
 
         //Exercise 17: Print out the calendar for year 2018.
         //Something wrong with April and July. I'll have to check it out eventually
@@ -178,10 +178,8 @@ public class TimeApiExercises {
         System.out.println("Calendar for the year " + year);
 
         DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
-        String[] dayNames = symbols.getShortWeekdays();
         String[] monthNames = symbols.getMonths();
 
-        //System.out.println("  M  T  W  T  F  S  S");
 
         for (int month = Calendar.JANUARY; month <= Calendar.DECEMBER; month++) {
             // Create a new Calendar object for each month
