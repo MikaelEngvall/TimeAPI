@@ -154,6 +154,7 @@ public class TimeApiExercises {
         System.out.println("Exercise 16: Date component: " + date + " Time component: " + time);
 
         //Exercise 17: Print out the calendar for year 2018.
+        //Something wrong with April and July. I'll have to check it out eventually
         int year = 2018;
         // Create a Calendar object
         Calendar calendar = Calendar.getInstance();
