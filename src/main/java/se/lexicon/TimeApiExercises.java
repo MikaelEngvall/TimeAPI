@@ -10,7 +10,7 @@ import static java.time.format.TextStyle.FULL;
 
 /* Exercises from Lexicon. 1-14
  * Using the JavaTime API
- * After todays lecture I would have done lots of the exercises differently
+ * After today's lecture I would have done lots of the exercises differently
  */
 public class TimeApiExercises {
 
@@ -80,7 +80,7 @@ public class TimeApiExercises {
         System.out.println(years + " years, " + months + " months and " + days + " days.");
 
         //Exercise 8: Create a period of 4 years, 7 months and 29 days. Then create a LocalDate of current date
-        // and add the period you createdto the current date.
+        // and add the period you created to the current date.
         Period periodEx8 = Period.of(4, 7, 29);
 
         // Add the period to the current date
@@ -153,7 +153,7 @@ public class TimeApiExercises {
 
         System.out.println("Exercise 16: Date component: " + date + " Time component: " + time);
 
-        //Exercise 17: Print out the calendar for year 2018. I could work on the format a little more, maybe later on.
+        //Exercise 17: Print out the calendar for year 2018.
         int year = 2018;
         // Create a Calendar object
         Calendar calendar = Calendar.getInstance();
@@ -177,10 +177,13 @@ public class TimeApiExercises {
         System.out.println("Calendar for the year " + year);
 
         DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
+        String[] dayNames = symbols.getShortWeekdays();
         String[] monthNames = symbols.getMonths();
 
+        //System.out.println("  M  T  W  T  F  S  S");
+
         for (int month = Calendar.JANUARY; month <= Calendar.DECEMBER; month++) {
-            // Create a new Calendar object for each month otherwise I get 31 days every month
+            // Create a new Calendar object for each month
             Calendar monthCalendar = Calendar.getInstance();
             monthCalendar.set(Calendar.YEAR, year);
             monthCalendar.set(Calendar.MONTH, month);
@@ -191,14 +194,23 @@ public class TimeApiExercises {
             String monthName = monthNames[month];
 
             System.out.println("\n" + monthName);
+            System.out.println(" Må Ti On To Fr Lö Sö");
+
+
+            int firstDayOfWeek = monthCalendar.get(Calendar.DAY_OF_WEEK);
+
+            // Print leading spaces for the first week
+            for (int i = Calendar.MONDAY; i < firstDayOfWeek; i++) {
+                System.out.print("   ");
+            }
 
             for (int day = 1; day <= maxDayOfMonth; day++) {
-                monthCalendar.set(Calendar.DAY_OF_MONTH, day);
                 int weekDay = monthCalendar.get(Calendar.DAY_OF_WEEK);
                 System.out.printf("%3d", day);
-                if (weekDay == Calendar.SATURDAY || day == maxDayOfMonth) {
+                if (weekDay == Calendar.SUNDAY || day == maxDayOfMonth) {
                     System.out.println();
                 }
+                monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
             }
         }
     }
