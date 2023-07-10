@@ -1,7 +1,9 @@
 package se.lexicon;
 
+import java.text.DateFormatSymbols;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Locale;
 
 import static java.time.format.TextStyle.FULL;
@@ -131,6 +133,35 @@ public class TimeApiExercises {
 
         System.out.println("Exercise 14: Formatted LocalDateTime: " + formattedDateTime);
 
+        //Exercise 15:
+        // Create a LocalDate object
+        LocalDate dateEx15 = LocalDate.of(2023, 7, 8);
+        // Create a LocalTime object
+        LocalTime timeEx15 = LocalTime.of(12, 34, 56);
+        // Combine the LocalDate and LocalTime to create a LocalDateTime object
+        LocalDateTime dateTimeEx15 = dateEx15.atTime(timeEx15);
+
+        System.out.println("Exercise 15: Combined LocalDateTime: " + dateTime);
+
+        //Exercise 16:
+        // Create a LocalDateTime object
+        LocalDateTime dateTimeEx16 = LocalDateTime.of(2023, 7, 8, 12, 34, 56);
+        // Extract the LocalDate component from the LocalDateTime
+        LocalDate dateEx16 = dateTime.toLocalDate();
+        // Extract the LocalTime component from the LocalDateTime
+        LocalTime timeEx16 = dateTime.toLocalTime();
+
+        System.out.println("Exercise 16: Date component: " + date + " Time component: " + time);
+
+        //Exercise 17: Print out the calendar for year 2018. I could work on the format a little more, maybe later on.
+        int year = 2018;
+        // Create a Calendar object
+        Calendar calendar = Calendar.getInstance();
+        // Set the year
+        calendar.set(Calendar.YEAR, year);
+        // Print the calendar for the year 2018
+        printCalendar(calendar);
+
     }
 
     private static String capitalizeFirstLetter(String text) {
@@ -138,5 +169,37 @@ public class TimeApiExercises {
             return text;
         }
         return text.substring(0, 1).toUpperCase() + text.substring(1);
+    }
+
+    public static void printCalendar(Calendar calendar) {
+        int year = calendar.get(Calendar.YEAR);
+
+        System.out.println("Calendar for the year " + year);
+
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
+        String[] monthNames = symbols.getMonths();
+
+        for (int month = Calendar.JANUARY; month <= Calendar.DECEMBER; month++) {
+            // Create a new Calendar object for each month otherwise I get 31 days every month
+            Calendar monthCalendar = Calendar.getInstance();
+            monthCalendar.set(Calendar.YEAR, year);
+            monthCalendar.set(Calendar.MONTH, month);
+            monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
+
+            int maxDayOfMonth = monthCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+            String monthName = monthNames[month];
+
+            System.out.println("\n" + monthName);
+
+            for (int day = 1; day <= maxDayOfMonth; day++) {
+                monthCalendar.set(Calendar.DAY_OF_MONTH, day);
+                int weekDay = monthCalendar.get(Calendar.DAY_OF_WEEK);
+                System.out.printf("%3d", day);
+                if (weekDay == Calendar.SATURDAY || day == maxDayOfMonth) {
+                    System.out.println();
+                }
+            }
+        }
     }
 }
