@@ -8,6 +8,7 @@ import static java.time.format.TextStyle.FULL;
 
 /* Exercises from Lexicon. 1-14
  * Using the JavaTime API
+ * After todays lecture I would have done lots of the exercises differently
  */
 public class TimeApiExercises {
 
