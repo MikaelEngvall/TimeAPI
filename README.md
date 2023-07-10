@@ -1,2 +1,2 @@
 # TimeAPI
-Exercises 1-14 from the Lexicon course
+Exercises 1-17 from the Lexicon course
