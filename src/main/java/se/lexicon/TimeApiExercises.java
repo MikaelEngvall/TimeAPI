@@ -194,7 +194,7 @@ public class TimeApiExercises {
 
             String monthName = monthNames[month];
 
-            System.out.println("\n" + monthName);
+            System.out.println("\n " + capitalizeFirstLetter(monthName) + " " + year);
             System.out.println(" Må Ti On To Fr Lö Sö");
 
 
