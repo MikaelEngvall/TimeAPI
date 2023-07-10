@@ -200,8 +200,11 @@ public class TimeApiExercises {
 
             int firstDayOfWeek = monthCalendar.get(Calendar.DAY_OF_WEEK);
 
-            // Print leading spaces for the first week
-            for (int i = Calendar.MONDAY; i < firstDayOfWeek; i++) {
+
+            // Calculate the number of leading spaces for the first week
+            int leadingSpaces = (firstDayOfWeek - Calendar.MONDAY + 7) % 7;
+
+            for (int i = 0; i < leadingSpaces; i++) {
                 System.out.print("   ");
             }
 
@@ -215,4 +218,5 @@ public class TimeApiExercises {
             }
         }
     }
+
 }
